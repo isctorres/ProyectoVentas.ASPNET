@@ -6,6 +6,13 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190322063845_InitialMigration.cs" />
+    <Compile Remove="Data\Migrations\20190322063845_InitialMigration.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190322073526_MigracionInicial.cs" />
+    <Compile Remove="Data\Migrations\20190322073526_MigracionInicial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

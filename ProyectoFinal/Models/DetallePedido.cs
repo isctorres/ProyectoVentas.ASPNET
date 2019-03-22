@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,10 +10,10 @@ namespace Proyecto.Models
     public class DetallePedido
     {
         public int PedidoID { get; set; }
-        public Pedidos Pedidos { get; set; }
+        public Pedidos Pedido { get; set; }
 
         public int ProductoID { get; set; }
-        public Productos Productos { get; set; }
+        public Productos Producto { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
