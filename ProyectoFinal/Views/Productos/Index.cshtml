@@ -4,12 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Agregar Producto</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -25,14 +23,20 @@
                 @Html.DisplayNameFor(model => model.Descontinuado)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Categorias)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <img src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image))">
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreProducto)
             </td>
@@ -49,9 +53,9 @@
                 @Html.DisplayFor(modelItem => item.Categorias.NombreCategoria)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductoID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ProductoID" class="btn btn-outline-primary btn-sm">Editar</a> 
+                <a asp-action="Details" asp-route-id="@item.ProductoID" class="btn btn-outline-success btn-sm">Detalles</a> 
+                <a asp-action="Delete" asp-route-id="@item.ProductoID" class="btn btn-outline-danger btn-sm">Eliminar</a>
             </td>
         </tr>
 }

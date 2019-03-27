@@ -23,7 +23,8 @@ namespace Proyecto.Models
         public decimal Precio { get; set; }
 
         public bool Descontinuado { get; set; }
-
+        public byte[] Image { get; set; }
+    
         public int CategoriaID { get; set; }
         [ForeignKey("CategoriaID")]
         public virtual Categorias Categorias { get; set; }

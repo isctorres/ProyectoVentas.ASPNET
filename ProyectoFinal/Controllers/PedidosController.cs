@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using ProyectoFinal.Data;
 
 namespace ProyectoFinal.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class PedidosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -59,6 +61,7 @@ namespace ProyectoFinal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("PedidoID,FechaPedido,FechaEmbarque,ReferenciaBanco,ClienteID,EstatusID")] Pedidos pedidos)
         {
             if (ModelState.IsValid)

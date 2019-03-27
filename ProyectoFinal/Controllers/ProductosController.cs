@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +13,7 @@ using ProyectoFinal.Data;
 
 namespace ProyectoFinal.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ProductosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -57,10 +61,21 @@ namespace ProyectoFinal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductoID,NombreProducto,Existencia,Precio,Descontinuado,CategoriaID")] Productos productos)
+        public async Task<IActionResult> Create([Bind("ProductoID,NombreProducto,Existencia,Precio,Descontinuado,Image,CategoriaID")] Productos productos, IList<IFormFile> Image)
         {
             if (ModelState.IsValid)
             {
+                foreach (var item in Image)
+                {
+                    if (item.Length>0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            productos.Image = stream.ToArray();
+                        }
+                    }
+                }
                 _context.Add(productos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +106,7 @@ namespace ProyectoFinal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductoID,NombreProducto,Existencia,Precio,Descontinuado,CategoriaID")] Productos productos)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductoID,NombreProducto,Existencia,Precio,Descontinuado,Image,CategoriaID")] Productos productos)
         {
             if (id != productos.ProductoID)
             {
