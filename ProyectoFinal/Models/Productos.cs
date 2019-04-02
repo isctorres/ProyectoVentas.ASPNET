@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoFinal.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,5 +32,6 @@ namespace Proyecto.Models
 
         public ICollection<Promociones> Promociones { get; set; }
         public List<DetallePedido> DetallePedido { get; set; }
+        public ICollection<Carrito> Carrito { get; set; }
     }
 }
