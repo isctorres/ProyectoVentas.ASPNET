@@ -24,6 +24,8 @@ namespace Proyecto.Models
         public decimal Precio { get; set; }
 
         public bool Descontinuado { get; set; }
+
+        [Required]
         public byte[] Image { get; set; }
     
         public int CategoriaID { get; set; }
