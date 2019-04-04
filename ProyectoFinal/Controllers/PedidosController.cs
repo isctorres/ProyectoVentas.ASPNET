@@ -11,7 +11,7 @@ using ProyectoFinal.Data;
 
 namespace ProyectoFinal.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize]
     public class PedidosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,13 +22,28 @@ namespace ProyectoFinal.Controllers
         }
 
         // GET: Pedidos
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Pedidos.Include(p => p.Clientes).Include(p => p.EstatusPedido);
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> PedidosCliente()
+        {
+            var cliente = (from n in _context.Clientes
+                           where n.EmailCliente == User.Identity.Name
+                           select n).ToList();
+
+            //var applicationDbContext = _context.Pedidos.Include(p => p.Clientes).Include(p => p.EstatusPedido);
+            var pedidos = (from n in _context.Pedidos.Include("EstatusPedido")
+                           where n.ClienteID == cliente[0].ClienteID
+                           select n).ToListAsync();
+            return View(await pedidos);
+        }
+
         // GET: Pedidos/Details/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

@@ -92,3 +92,10 @@ C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Views\Productos\Details.g.cshtml.cs
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Views\Productos\Edit.g.cshtml.cs
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Views\Productos\Index.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Views\Carrito\Index.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Register.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\_ViewImports.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\Razor\Views\Pedidos\PedidosCliente.g.cshtml.cs

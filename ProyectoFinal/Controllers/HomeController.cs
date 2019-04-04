@@ -25,8 +25,8 @@ namespace ProyectoFinal.Controllers
 
         public IActionResult Index()
         {
-            IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
-            var ip = heserver.AddressList[1].ToString();
+            /*IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
+            var ip = heserver.AddressList[1].ToString();*/
             
             var promos = (from n in _context.Promociones.Include("Productos")
                             //where n.FechaInicio >= DateTime.Now && DateTime.Now <= n.FechaFin

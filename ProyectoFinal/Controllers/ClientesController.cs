@@ -44,8 +44,9 @@ namespace ProyectoFinal.Controllers
         }
 
         // GET: Clientes/Create
-        public IActionResult Create()
+        public IActionResult Create(string email = null)
         {
+            ViewData["EmailCte"] = email;
             return View();
         }
 
@@ -60,6 +61,12 @@ namespace ProyectoFinal.Controllers
             {
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
+
+                if ( !User.IsInRole("Administrador") )
+                {
+                    return RedirectToAction("Index","Home");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(clientes);

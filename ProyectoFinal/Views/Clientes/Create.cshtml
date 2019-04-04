@@ -28,8 +28,16 @@
                 <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <!-- Cuando el sistema valida que el usuario logueado no tiene datos del cliente, envia al Create el email-->
                 <label asp-for="EmailCliente" class="control-label"></label>
-                <input asp-for="EmailCliente" class="form-control" />
+                @if (ViewBag.EmailCte != "")
+                {
+                    <input asp-for="EmailCliente" class="form-control" value="@ViewBag.EmailCte" readonly />
+                }
+                else
+                {
+                    <input asp-for="EmailCliente" class="form-control" />
+                }
                 <span asp-validation-for="EmailCliente" class="text-danger"></span>
             </div>
             <div class="form-group">

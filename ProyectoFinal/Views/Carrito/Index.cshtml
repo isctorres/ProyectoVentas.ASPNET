@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Carrito>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Mi Carrito de Compras</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registrado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descuento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img width="80px" height="80px" src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Producto.Image))">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registrado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.CarritoID" class="btn btn-outline-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="display:block; float-right ">
+    <a asp-action="Comprar" class="btn btn-primary align">Confirmar Compra</a>
+</div>
