@@ -3,68 +3,59 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    /**** ESTILOS DE FOOTER   ****/
+    .footer {
+        background: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+        .footer .social [class^="icon-"] {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 30px;
+            padding: 10px;
+            background: #6c757d;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            line-height: 40px;
+        }
+
+</style>
+
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-main bg padding-top-sm">
     <div class="container">
 
         <div class="row-sm">
-            <div class="col-md-8">
+            <div class="col-md-12">
 
 
                 <!-- ================= main slide ================= -->
                 <div class="owl-init slider-main owl-carousel" data-items="1" data-dots="false" data-nav="true">
                     <div class="item-slide">
-                        <img src="images/banners/slide1.jpg">
+                        <img src="~/images/banners/tennis.jpg">
                     </div>
                     <div class="item-slide rounded">
-                        <img src="images/banners/slide2.jpg">
+                        <img src="~/images/banners/tennis2.jpg">
                     </div>
                     <div class="item-slide rounded">
-                        <img src="images/banners/slide3.jpg">
+                        <img src="~/images/banners/balon.jpg">
                     </div>
                 </div>
                 <!-- ============== main slidesow .end // ============= -->
 
             </div> <!-- col.// -->
-            <aside class="col-md-4">
-
-                <div class="card mb-3">
-                    <figure class="itemside">
-                        <div class="aside"><div class="img-wrap p-2 border-right"><img class="img-sm" src="images/items/1.jpg"></div></div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title">Grupo de productos </h6>
-                            <a href="#">Más productos</a>
-                        </figcaption>
-                    </figure>
-                </div> <!-- card.// -->
-
-                <div class="card mb-3">
-                    <figure class="itemside">
-                        <div class="aside"><div class="img-wrap p-2 border-right"><img class="img-sm" src="images/items/2.jpg"></div></div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title">Grupo de productos </h6>
-                            <a href="#">Más productos</a>
-                        </figcaption>
-                    </figure>
-                </div> <!-- card.// -->
-
-                <div class="card">
-                    <figure class="itemside">
-                        <div class="aside"><div class="img-wrap p-2 border-right"><img class="img-sm" src="images/items/3.jpg"></div></div>
-                        <figcaption class="text-wrap align-self-center">
-                            <h6 class="title">Grupo de productos </h6>
-                            <a href="#">Más productos</a>
-                        </figcaption>
-                    </figure>
-                </div> <!-- card.// -->
-
-            </aside>
         </div>
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
-<section>
+<section class="padding-top-sm">
     <div class="container">
 
         <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
@@ -107,6 +98,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+                </div>
         </div><!-- END CAROUSEL-->
     </div>
 </section>
@@ -119,7 +111,8 @@
             <div class="card-body">
 
                 <header class="section-heading">
-                    <h3 class="title-section">Toda la información en General</h3>
+                    <h2 class="title-section">Nuestras marcas</h2>
+                    
                 </header>
 
                 <article>
@@ -155,15 +148,17 @@
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg2">
+<footer class="section-footer bg2 footer">
     <div class="container">
-        <section class="footer-bottom row">
-            <div class="col-sm-6">
-                <p> Proyecto Final Ventas</p>
-            </div>
-            <div class="col-sm-6">
-            </div>
-        </section> <!-- //footer-top -->
+        <div class="social">
+            <a href="" class="icon-facebook"></a>
+            <a href="" class="icon-twitter"></a>
+            <a href="" class="icon-google-plus"></a>
+            <a href="" class="icon-vine"></a>
+        </div>
+        <p class="copy" style="color:#6c757d;">&copy; I:E Proyecto Final Todos los derechos reservados</p>
+
     </div><!-- //container -->
 </footer>
+
 <!-- ========================= FOOTER END // ========================= -->
