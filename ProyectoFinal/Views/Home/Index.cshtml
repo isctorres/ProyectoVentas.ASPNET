@@ -70,10 +70,10 @@
                                     <img class="pic-2" src="data:image/jpeg;base64,@(Convert.ToBase64String(promo.Productos.Image))">
                                 </a>
                                 <ul class="social">
-                                    <li><a href="@Url.Action("Details", "Productos")" data-tip="Ver Detalles" class="elements"><i class="fa fa-search"></i></a></li>
-                                    <li><a href="@Url.Action("Agregar", "Carrito", new {idProducto = promo.ProductoID, cantidad = 1, precio = promo.Productos.Precio, descu = promo.Descuento })" data-tip="Agregar al Carrito" class="elements"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="@Url.Action("Details", "Productos")" data-tip="Vista rápida" class="elements"><i class="fa fa-search"></i></a></li>
+                                    <li><a href="@Url.Action("Agregar", "Carrito", new {idProducto = promo.ProductoID, cantidad = 1, precio = promo.Productos.Precio, descu = promo.Descuento })" data-tip="Agregar a Carrito" class="elements"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
-                                <span class="product-new-label">Sale</span>
+                                <span class="product-new-label">Promoción</span>
                                 <span class="product-discount-label">@promo.Descuento</span>
                             </div>
                             <div class="product-content">
@@ -85,7 +85,11 @@
                                     @precio
                                     <span>$ @promo.Productos.Precio</span>
                                 </div>
+<<<<<<< HEAD
                                 <!--a class="add-to-cart" href="">+ Add To Carta-->
+=======
+                                <a class="add-to-cart" href="">+ Agregar a Carrito</a>
+>>>>>>> fc67ea4ae167884cfe0eee30b68b50ce20142a4f
                             </div>
                         </div>
                     </div>
