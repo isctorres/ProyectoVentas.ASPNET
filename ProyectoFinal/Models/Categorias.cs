@@ -11,6 +11,7 @@ namespace Proyecto.Models
         [Key]
         public int CategoriaID { get; set; }
 
+        [Display(Name = "Nombre de la Categoría")]
         [Required]
         public string NombreCategoria { get; set; }
 

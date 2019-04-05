@@ -13,6 +13,7 @@ namespace Proyecto.Models
         [Key]
         public int ProductoID { get; set; }
 
+        [Display(Name = "Nombre de Producto")]
         [Required]
         public string NombreProducto { get; set; }
 
@@ -26,6 +27,7 @@ namespace Proyecto.Models
         public bool Descontinuado { get; set; }
 
         //[Required]
+        [Display(Name = "Imagen")]
         public byte[] Image { get; set; }
     
         public int CategoriaID { get; set; }
