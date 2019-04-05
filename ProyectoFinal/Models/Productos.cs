@@ -25,7 +25,7 @@ namespace Proyecto.Models
 
         public bool Descontinuado { get; set; }
 
-        [Required]
+        //[Required]
         public byte[] Image { get; set; }
     
         public int CategoriaID { get; set; }
