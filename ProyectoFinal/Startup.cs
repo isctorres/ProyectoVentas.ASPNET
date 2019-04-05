@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoFinal.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProyectoFinal.Models;
 
 namespace ProyectoFinal
 {
@@ -35,14 +36,23 @@ namespace ProyectoFinal
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            /*services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()   // Agregamos esta linea para que se tomen en cuenta los roles
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();*/
+
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.AllowedUserNameCharacters = null;
+            })
+            .AddRoles<IdentityRole>()
+            .AddDefaultUI(UIFramework.Bootstrap4)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

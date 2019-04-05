@@ -8,7 +8,7 @@ using ProyectoFinal.Models;
 
 namespace ProyectoFinal.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -41,5 +41,6 @@ namespace ProyectoFinal.Data
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Promociones> Promociones { get; set; }
         public DbSet<Carrito> Carrito { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

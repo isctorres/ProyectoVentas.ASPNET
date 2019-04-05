@@ -10,6 +10,7 @@ using ProyectoFinal.Data;
 
 namespace ProyectoFinal.Controllers
 {
+
     public class ClientesController : Controller
     {
         private readonly ApplicationDbContext _context;

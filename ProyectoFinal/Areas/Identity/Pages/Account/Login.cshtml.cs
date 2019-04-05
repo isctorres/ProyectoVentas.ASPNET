@@ -10,18 +10,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProyectoFinal.Data;
+using ProyectoFinal.Models;
 
 namespace ProyectoFinal.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly ApplicationDbContext _context;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, ApplicationDbContext context)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _context = context;
@@ -83,7 +86,10 @@ namespace ProyectoFinal.Areas.Identity.Pages.Account
                                    where n.EmailCliente == Input.Email
                                    select n);
 
-                    if (cliente.Count() == 0)
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var isAdmin = await _userManager.IsInRoleAsync(user, "Administrador");
+                    
+                    if (cliente.Count() == 0 && !isAdmin )
                         return RedirectToAction("Create","Clientes",new { email = Input.Email });
 
                     _logger.LogInformation("User logged in.");

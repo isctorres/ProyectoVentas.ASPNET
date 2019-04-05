@@ -70,8 +70,8 @@
                                     <img class="pic-2" src="data:image/jpeg;base64,@(Convert.ToBase64String(promo.Productos.Image))">
                                 </a>
                                 <ul class="social">
-                                    <li><a href="@Url.Action("Details", "Productos")" data-tip="Quick View" class="elements"><i class="fa fa-search"></i></a></li>
-                                    <li><a href="@Url.Action("Agregar", "Carrito", new {idProducto = promo.ProductoID, cantidad = 1, precio = promo.Productos.Precio, descu = promo.Descuento })" data-tip="Quick View" class="elements"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="@Url.Action("Details", "Productos")" data-tip="Ver Detalles" class="elements"><i class="fa fa-search"></i></a></li>
+                                    <li><a href="@Url.Action("Agregar", "Carrito", new {idProducto = promo.ProductoID, cantidad = 1, precio = promo.Productos.Precio, descu = promo.Descuento })" data-tip="Agregar al Carrito" class="elements"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                                 <span class="product-new-label">Sale</span>
                                 <span class="product-discount-label">@promo.Descuento</span>
@@ -79,10 +79,13 @@
                             <div class="product-content">
                                 <h3 class="title"><a href="#">@promo.Productos.NombreProducto</a></h3>
                                 <div class="price">
-                                    $16.00
-                                    <span>$20.00</span>
+                                    @{ 
+                                        var precio = Decimal.Round(promo.Productos.Precio * (1 - (@promo.Descuento / 100)),2);
+                                    }
+                                    @precio
+                                    <span>$ @promo.Productos.Precio</span>
                                 </div>
-                                <a class="add-to-cart" href="">+ Add To Cart</a>
+                                <!--a class="add-to-cart" href="">+ Add To Carta-->
                             </div>
                         </div>
                     </div>
