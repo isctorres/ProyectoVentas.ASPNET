@@ -99,3 +99,4 @@ C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\ProyectoFinal.dll
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\ProyectoFinal.pdb
 C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\ProyectoFinal.csproj.CopyComplete
+C:\Users\iscto\source\repos\ProyectoFinal\ProyectoFinal\obj\Debug\netcoreapp2.2\ProyectoFinal.csprojAssemblyReference.cache
