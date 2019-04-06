@@ -56,6 +56,7 @@ namespace ProyectoFinal.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
@@ -73,6 +74,7 @@ namespace ProyectoFinal.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             returnUrl = returnUrl ?? Url.Content("~/");
 
             if (ModelState.IsValid)

@@ -23,12 +23,14 @@ namespace ProyectoFinal.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             return View(await _context.Clientes.ToListAsync());
         }
 
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +49,7 @@ namespace ProyectoFinal.Controllers
         // GET: Clientes/Create
         public IActionResult Create(string email = null)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             ViewData["EmailCte"] = email;
             return View();
         }
@@ -58,6 +61,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClienteID,NombreCliente,ApellidoPaterno,ApellidoMaterno,EmailCliente,TelefonoCliente")] Clientes clientes)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (ModelState.IsValid)
             {
                 _context.Add(clientes);
@@ -76,6 +80,7 @@ namespace ProyectoFinal.Controllers
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -96,6 +101,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ClienteID,NombreCliente,ApellidoPaterno,ApellidoMaterno,EmailCliente,TelefonoCliente")] Clientes clientes)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id != clientes.ClienteID)
             {
                 return NotFound();
@@ -127,6 +133,7 @@ namespace ProyectoFinal.Controllers
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -147,6 +154,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             var clientes = await _context.Clientes.FindAsync(id);
             _context.Clientes.Remove(clientes);
             await _context.SaveChangesAsync();

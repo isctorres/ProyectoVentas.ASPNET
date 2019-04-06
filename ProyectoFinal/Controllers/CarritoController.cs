@@ -28,6 +28,8 @@ namespace ProyectoFinal.Controllers
             //var applicationDbContext = _context.Carrito.Include(c => c.Producto);
             //return View(await applicationDbContext.ToListAsync());
 
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
             var ip = heserver.AddressList[1].ToString();
 
@@ -41,6 +43,8 @@ namespace ProyectoFinal.Controllers
         [Authorize]
         public async Task<IActionResult> Comprar()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
             var ip = heserver.AddressList[1].ToString();
 
@@ -94,6 +98,8 @@ namespace ProyectoFinal.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Agregar( int idProducto, int cantidad, decimal precio, decimal descu)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
             var ip = heserver.AddressList[1].ToString();
 
@@ -123,6 +129,8 @@ namespace ProyectoFinal.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var carrito = await _context.Carrito.FindAsync(id);
             _context.Carrito.Remove(carrito);
             await _context.SaveChangesAsync();

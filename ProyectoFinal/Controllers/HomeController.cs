@@ -32,6 +32,7 @@ namespace ProyectoFinal.Controllers
         {
             /*IPHostEntry heserver = Dns.GetHostEntry(Dns.GetHostName());
             var ip = heserver.AddressList[1].ToString();*/
+
             ViewData["Categorias"] = (from c in _context.Categorias select c);
 
             var promos = (from n in _context.Promociones.Include("Productos")
@@ -49,6 +50,7 @@ namespace ProyectoFinal.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

@@ -24,6 +24,8 @@ namespace ProyectoFinal.Controllers
         // GET: Promociones
         public async Task<IActionResult> Index()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var applicationDbContext = _context.Promociones.Include(p => p.Productos);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -31,6 +33,8 @@ namespace ProyectoFinal.Controllers
         // GET: Promociones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -50,6 +54,8 @@ namespace ProyectoFinal.Controllers
         // GET: Promociones/Create
         public IActionResult Create()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             ViewData["ProductoID"] = new SelectList(_context.Productos, "ProductoID", "NombreProducto");
             return View();
         }
@@ -61,6 +67,8 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PromocionID,Descuento,FechaInicio,FechaFin,ProductoID")] Promociones promociones)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (ModelState.IsValid)
             {
                 _context.Add(promociones);
@@ -74,6 +82,8 @@ namespace ProyectoFinal.Controllers
         // GET: Promociones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -95,6 +105,8 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PromocionID,Descuento,FechaInicio,FechaFin,ProductoID")] Promociones promociones)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id != promociones.PromocionID)
             {
                 return NotFound();
@@ -127,6 +139,8 @@ namespace ProyectoFinal.Controllers
         // GET: Promociones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -148,6 +162,8 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var promociones = await _context.Promociones.FindAsync(id);
             _context.Promociones.Remove(promociones);
             await _context.SaveChangesAsync();

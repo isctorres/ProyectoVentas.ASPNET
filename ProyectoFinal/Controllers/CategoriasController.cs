@@ -24,12 +24,14 @@ namespace ProyectoFinal.Controllers
         // GET: Categorias
         public async Task<IActionResult> Index()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             return View(await _context.Categorias.ToListAsync());
         }
 
         // GET: Categorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -48,6 +50,7 @@ namespace ProyectoFinal.Controllers
         // GET: Categorias/Create
         public IActionResult Create()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             return View();
         }
 
@@ -58,6 +61,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoriaID,NombreCategoria")] Categorias categorias)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (ModelState.IsValid)
             {
                 _context.Add(categorias);
@@ -70,6 +74,7 @@ namespace ProyectoFinal.Controllers
         // GET: Categorias/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -90,6 +95,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoriaID,NombreCategoria")] Categorias categorias)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id != categorias.CategoriaID)
             {
                 return NotFound();
@@ -121,6 +127,7 @@ namespace ProyectoFinal.Controllers
         // GET: Categorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             if (id == null)
             {
                 return NotFound();
@@ -141,6 +148,7 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
             var categorias = await _context.Categorias.FindAsync(id);
             _context.Categorias.Remove(categorias);
             await _context.SaveChangesAsync();

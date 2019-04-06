@@ -29,6 +29,8 @@ namespace ProyectoFinal.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var user = await _userManager.FindByEmailAsync(User.Identity.Name);
             ViewBag.isAdmin = await _userManager.IsInRoleAsync(user, "Administrador");
 
@@ -38,6 +40,8 @@ namespace ProyectoFinal.Controllers
 
         public async Task<IActionResult> PedidosCliente()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var cliente = (from n in _context.Clientes
                            where n.EmailCliente == User.Identity.Name
                            select n).ToList();
@@ -53,6 +57,8 @@ namespace ProyectoFinal.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -73,6 +79,8 @@ namespace ProyectoFinal.Controllers
         // GET: Pedidos/Create
         public IActionResult Create()
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             ViewData["ClienteID"] = new SelectList(_context.Clientes, "ClienteID", "ApellidoMaterno");
             ViewData["EstatusID"] = new SelectList(_context.EstatusPedido, "EstatusID", "DescEstatus");
             return View();
@@ -86,6 +94,8 @@ namespace ProyectoFinal.Controllers
         [Authorize]
         public async Task<IActionResult> Create([Bind("PedidoID,FechaPedido,FechaEmbarque,ReferenciaBanco,ClienteID,EstatusID")] Pedidos pedidos)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (ModelState.IsValid)
             {
                 _context.Add(pedidos);
@@ -100,6 +110,8 @@ namespace ProyectoFinal.Controllers
         // GET: Pedidos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -122,6 +134,8 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PedidoID,FechaPedido,FechaEmbarque,ReferenciaBanco,ClienteID,EstatusID")] Pedidos pedidos)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id != pedidos.PedidoID)
             {
                 return NotFound();
@@ -155,6 +169,8 @@ namespace ProyectoFinal.Controllers
         // GET: Pedidos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             if (id == null)
             {
                 return NotFound();
@@ -177,6 +193,8 @@ namespace ProyectoFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
             var pedidos = await _context.Pedidos.FindAsync(id);
             _context.Pedidos.Remove(pedidos);
             await _context.SaveChangesAsync();
