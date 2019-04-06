@@ -11,6 +11,7 @@ namespace Proyecto.Models
         [Key]
         public int EstatusID { get; set; }
 
+        [Display(Name = "Estatus")]
         [Required]
         public string DescEstatus { get; set; }
         
