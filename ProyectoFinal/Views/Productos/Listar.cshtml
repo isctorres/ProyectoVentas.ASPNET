@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Proyecto.Models.Productos>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+@{
+    int cantidad = 0;
+}
+
+<h1>Nuestros Productos</h1>
+
+<div class="container">
+
+
+    @foreach (var producto in Model)
+    {
+        @if (cantidad % 5 == 0)
+        {
+            WriteLiteral("<div class=\"row\">");
+        }
+
+
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid6">
+                <div class="product-image6">
+                    <a href="#">
+                        <img class="pic-1" src="data:image/jpeg;base64,@(Convert.ToBase64String(producto.Image))">
+                    </a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@producto.NombreProducto</a></h3>
+                    <div class="price">
+                        @producto.Precio
+                        <!--span>$14.00</span-->
+                    </div>
+                </div>
+                <ul class="social">
+                    <li><a href="" data-tip="Detalle"><i class="fa fa-search"></i></a></li>
+                    <li><a href="@Url.Action("Agregar", "Carrito", new {idProducto = producto.ProductoID, cantidad = 1, precio = producto.Precio, descu = 0 })" data-tip="Agregar al Carrito"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        @if (cantidad % 4 == 0 && cantidad != 0)
+        {
+            WriteLiteral("</div>");
+        }
+        cantidad++;
+    }
+</div>

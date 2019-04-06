@@ -29,6 +29,17 @@ namespace ProyectoFinal.Controllers
             var applicationDbContext = _context.Productos.Include(p => p.Categorias);
             return View(await applicationDbContext.ToListAsync());
         }
+        
+        // LISTAMOS LOS PRODUCTOS POR SU CATEGORIA
+        public IActionResult Listar(int CategoriaID)
+        {
+            ViewData["Categorias"] = (from c in _context.Categorias select c);
+
+            var productosCategoria = (from pc in _context.Productos.Include("Categorias")
+                                      where pc.CategoriaID == CategoriaID
+                                      select pc).ToList();
+            return View(productosCategoria);
+        }
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)

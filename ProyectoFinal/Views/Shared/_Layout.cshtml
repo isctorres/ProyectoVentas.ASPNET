@@ -1,11 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Proyecto.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Proyecto Final Ventas</title>
 
+    <title>Proyecto Final Ventas</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/images/miLogo.png">
 
     <!-- jQuery -->
@@ -61,8 +67,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3">
                         <div class="brand-wrap">
-                            <img class="logo" src="~/images/miLogo.png">
-                            <h2 class="logo-text">Proyecto ventas</h2>
+                            <img class="logo" width="200" height="350" src="~/images/miLogo.png">
                         </div> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-lg-6 col-sm-6">
@@ -89,14 +94,15 @@
                                 </a>
                             </div> <!-- widget .// -->
                             <div class="widget-header dropdown">
-                                <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
+                                <a href="~/Identity/Account/Login" class="ml-3 icontext"  data-offset="20,10">
                                     <div class="icon-wrap icon-xs bg2 round text-secondary"><i class="fa fa-user"></i></div>
                                     <div class="text-wrap">
-                                        <small>Hola</small>
-                                        <span>Iniciar Sesión <i class="fa fa-caret-down"></i></span>
+                                        <small>Bienvenido</small>
+                                        <span> Iniciar Sesión</span><!--<span>Iniciar Sesión <i class="fa fa-caret-down"></i></span>-->
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
+
                                     <form class="px-4 py-3">
                                         <div class="form-group">
                                             <label>Correo Electrónico</label>
@@ -119,45 +125,81 @@
             </div> <!-- container.// -->
         </section> <!-- header-main .// -->
 
+        @if (User.IsInRole("Administrador"))
+        {
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <div class="collapse navbar-collapse" id="main_nav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Productos")">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Promociones")">Promociones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Categorias")">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "EstatusPedido")">Estatus</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Pedidos")">Pedidos</a>
+                            </li>
+                        </ul>
+                    </div> <!-- collapse .// -->
+                </div> <!-- container .// -->
+            </nav>
+        }
+        else
+        {
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                <div class="container">
 
-                <div class="collapse navbar-collapse" id="main_nav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"> <strong>Todas los departamentos</strong></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Libros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Cómputo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Electronicos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Hogar y cocina</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Deportes</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Otros</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                <a class="dropdown-item" href="#">Alimentos y Bebidas</a>
-                                <a class="dropdown-item" href="#">Videojuegos</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div> <!-- collapse .// -->
-            </div> <!-- container .// -->
-        </nav>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="main_nav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown07">
+                                    @foreach (var categoria in ViewBag.Categorias)
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("Listar", "Productos", new { CategoriaID = @categoria.CategoriaID })">@categoria.NombreCategoria</a>
+                                    }
+                                    </div>
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("PedidosCliente", "Pedidos")">Mis Pedidos</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Quienes Somos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contactanos</a>
+                            </li>
+                            <!--<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Otros</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown07">
+                                    <a class="dropdown-item" href="#">Alimentos y Bebidas</a>
+                                    <a class="dropdown-item" href="#">Videojuegos</a>
+                                </div>
+                            </li>-->
+                        </ul>
+                    </div> <!-- collapse .// -->
+                </div> <!-- container .// -->
+            </nav>
+        }
 
     </header> <!-- section-header.// -->
 

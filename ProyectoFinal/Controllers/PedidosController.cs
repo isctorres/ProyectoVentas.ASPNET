@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyecto.Models;
 using ProyectoFinal.Data;
+using ProyectoFinal.Models;
 
 namespace ProyectoFinal.Controllers
 {
@@ -15,9 +17,11 @@ namespace ProyectoFinal.Controllers
     public class PedidosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public PedidosController(ApplicationDbContext context)
+        public PedidosController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -25,6 +29,9 @@ namespace ProyectoFinal.Controllers
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            ViewBag.isAdmin = await _userManager.IsInRoleAsync(user, "Administrador");
+
             var applicationDbContext = _context.Pedidos.Include(p => p.Clientes).Include(p => p.EstatusPedido);
             return View(await applicationDbContext.ToListAsync());
         }
